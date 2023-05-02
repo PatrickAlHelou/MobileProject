@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("username" , username);
                         editor.apply();
-                        startActivity(new Intent(LoginActivity.this , HomeActivity.class));
+                        startActivity(new Intent(LoginActivity.this , MainActivity2.class));
                     }else {
                         Toast.makeText(LoginActivity.this, "Invalid Username or Password", Toast.LENGTH_SHORT).show();
                     }
