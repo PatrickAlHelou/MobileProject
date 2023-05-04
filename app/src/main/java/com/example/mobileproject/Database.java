@@ -34,7 +34,7 @@ public class Database extends SQLiteOpenHelper {
         db.close();
     }
 
-    public int login (String username , String password){
+   /* public int login (String username , String password){
         int result = 0;
         String str[] = new String[2];
         str[0] = username;
@@ -45,5 +45,21 @@ public class Database extends SQLiteOpenHelper {
             result = 1;
         }
         return result;
+    }*/
+
+    public Cursor login(String username, String password) {
+        SQLiteDatabase db = getReadableDatabase();
+        String[] columns = {"username", "email"};
+        String[] selectionArgs = {username, password};
+        Cursor cursor = db.query("users", columns, "username=? AND password=?", selectionArgs, null, null, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            return cursor;
+        }
+        return null;
     }
+
+
+
+
+
 }
