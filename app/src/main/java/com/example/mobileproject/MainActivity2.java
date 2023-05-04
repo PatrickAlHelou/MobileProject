@@ -3,6 +3,8 @@ package com.example.mobileproject;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -20,7 +22,6 @@ public class MainActivity2 extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMain2Binding binding;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +54,18 @@ public class MainActivity2 extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_activity2, menu);
+
+
+        TextView nameTextView = findViewById(R.id.namee);
+        TextView emailTextView = findViewById(R.id.user_email);
+        String name = getIntent().getStringExtra("name");
+        String email = getIntent().getStringExtra("email");
+        if (nameTextView != null) {
+            nameTextView.setText(name);
+        }
+        if (emailTextView != null) {
+            emailTextView.setText(email);
+        }
         return true;
     }
 
