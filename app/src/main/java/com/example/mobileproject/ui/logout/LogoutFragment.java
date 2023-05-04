@@ -31,37 +31,22 @@ public class LogoutFragment extends Fragment {
         mLogoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showLogoutConfirmationDialog(view);
+                logout();
             }
         });
 
         return root;
     }
 
-    private void showLogoutConfirmationDialog(View view) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-        builder.setMessage("Loging out the account. Continue?")
-                .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        // Clear user session data
-                        // TODO: Implement clearUserSessionData() method
-                        clearUserSessionData();
+    private void logout() {
+        // Clear user session data
+        // TODO: Implement clearUserSessionData() method
+        clearUserSessionData();
 
-                        // Navigate to login screen
-                        Intent intent = new Intent(getActivity(), LoginActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
-                    }
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        // Dismiss the dialog and do nothing
-                        dialog.dismiss();
-                    }
-                });
-        AlertDialog alert = builder.create();
-        alert.show();
+        // Navigate to login screen
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 
     private void clearUserSessionData() {
