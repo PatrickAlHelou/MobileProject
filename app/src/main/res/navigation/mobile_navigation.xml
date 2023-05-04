@@ -22,4 +22,12 @@
         android:name="com.example.mobileproject.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.example.mobileproject.ui.logout.LogoutFragment"
+        android:label="Logout"
+        tools:layout="@layout/fragment_slideshow" />
+
+
 </navigation>
