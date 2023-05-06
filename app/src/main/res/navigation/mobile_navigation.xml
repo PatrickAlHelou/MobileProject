@@ -35,5 +35,11 @@
         android:label="Sleep"
         tools:layout="@layout/fragment_sleep"/>
 
+    <fragment
+        android:id="@+id/nav_music"
+        android:name="com.example.mobileproject.ui.music.MusicFragment"
+        android:label="Music"
+        tools:layout="@layout/fragment_music"/>
+
 
 </navigation>
