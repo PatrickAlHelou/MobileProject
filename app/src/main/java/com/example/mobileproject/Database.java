@@ -15,7 +15,7 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String qry1 = "create table users(username text,email text , password text )";
+        String qry1 = "create table users(id integer PRIMARY KEY AUTOINCREMENT ,username text,email text , password text )";
         db.execSQL(qry1);
     }
 
@@ -24,13 +24,13 @@ public class Database extends SQLiteOpenHelper {
 
     }
 
-    public void register(String username , String email , String password){
+    public void register(String username, String email, String password) {
         ContentValues cv = new ContentValues();
-        cv.put("username" , username);
-        cv.put("email" , email);
-        cv.put("password" , password);
+        cv.put("username", username);
+        cv.put("email", email);
+        cv.put("password", password);
         SQLiteDatabase db = getWritableDatabase();
-        db.insert("users", null , cv);
+        db.insert("users", "id", cv);
         db.close();
     }
 

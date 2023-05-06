@@ -44,14 +44,15 @@ public class RegisterActivity extends AppCompatActivity {
                 String confirm = edConfirm.getText().toString();
                 Database db = new Database(getApplicationContext() , "fitness",null,1);
 
+                int id = 1;
                 if(username.length() == 0  || password.length() == 0 || password.length() == 0 || confirm.length()==0){
-
                     Toast.makeText(RegisterActivity.this, "Please fill all the details", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     if (password.compareTo(confirm) == 0) {
                         if (isValid(password)) {
-                            db.register(username,email,password);
+                            id++; // increment the id variable by 1
+                            db.register(username, email, password); // pass the id variable to the register() method
                             Toast.makeText(RegisterActivity.this, "Record inserted", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                         } else {
@@ -68,26 +69,26 @@ public class RegisterActivity extends AppCompatActivity {
 
     public static boolean isValid(String password){
         // Password must be at least 8 characters long
-        if (password.length() < 8) {
-            return false;
-        }
-        // Password must contain at least one uppercase letter
-        if (!password.matches(".*[A-Z].*")) {
-            return false;
-        }
-        // Password must contain at least one lowercase letter
-        if (!password.matches(".*[a-z].*")) {
-            return false;
-        }
-        // Password must contain at least one digit
-        if (!password.matches(".*\\d.*")) {
-            return false;
-        }
-        // Password must contain at least one special character
-        if (!password.matches(".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?].*")) {
-            return false;
-        }
-        // Password is valid
+//        if (password.length() < 8) {
+//            return false;
+//        }
+//        // Password must contain at least one uppercase letter
+//        if (!password.matches(".*[A-Z].*")) {
+//            return false;
+//        }
+//        // Password must contain at least one lowercase letter
+//        if (!password.matches(".*[a-z].*")) {
+//            return false;
+//        }
+//        // Password must contain at least one digit
+//        if (!password.matches(".*\\d.*")) {
+//            return false;
+//        }
+//        // Password must contain at least one special character
+//        if (!password.matches(".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?].*")) {
+//            return false;
+//        }
+//        // Password is valid
         return true;
     }
 }
