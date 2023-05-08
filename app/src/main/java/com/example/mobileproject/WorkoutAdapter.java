@@ -1,13 +1,17 @@
 package com.example.mobileproject;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -47,8 +51,12 @@ public class WorkoutAdapter extends RecyclerView.Adapter<AdpViewHolder> {
         TextView textView4 = holder.reps;
         textView4.setText(String.valueOf(workout.getReps()));
 
-        TextView textView5 = holder.image;
-        textView5.setText(workout.getImage());
+        ImageView imageView = holder.image;
+        Glide.with(imageView.getContext())
+                .load(workout.getImage()) // load image from URL
+                .into(imageView); // set the loaded image to the ImageView
+
+        Log.d("WorkoutAdapter", "Image URL: " + workout.getImage());
 
     }
 
