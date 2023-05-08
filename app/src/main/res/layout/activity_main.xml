@@ -6,25 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-        </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvWorkouts"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="80" />
-    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

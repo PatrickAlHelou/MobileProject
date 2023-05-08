@@ -14,14 +14,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RecyclerView rvworkouts=(RecyclerView)(findViewById(R.id.rvWorkouts));
-
-        WorkoutAdapter workoutAdapter=new WorkoutAdapter(Workout.createWorkoutsList(this.getApplicationContext()));
-
-        rvworkouts.setAdapter(workoutAdapter);
-
-        rvworkouts.setLayoutManager(new LinearLayoutManager(this));
-        rvworkouts.setLayoutManager(new GridLayoutManager(this,2));
 
     }
 }
