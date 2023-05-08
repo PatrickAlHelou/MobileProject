@@ -37,8 +37,19 @@ public class WorkoutAdapter extends RecyclerView.Adapter<AdpViewHolder> {
 
         TextView textView = holder.title;
         textView.setText(workout.getTitle());
+
         TextView textView2 = holder.day;
         textView2.setText(workout.getDay());
+
+        TextView textView3 = holder.sets;
+        textView3.setText(String.valueOf(workout.getSets()));
+
+        TextView textView4 = holder.reps;
+        textView4.setText(String.valueOf(workout.getReps()));
+
+        TextView textView5 = holder.image;
+        textView5.setText(workout.getImage());
+
     }
 
     @Override

@@ -12,6 +12,9 @@ public class AdpViewHolder extends RecyclerView.ViewHolder {
 
     public TextView title;
     public TextView day;
+    public TextView sets;
+    public TextView reps;
+    public TextView image;
 
 
     public AdpViewHolder(@NonNull View itemView) {
@@ -19,5 +22,8 @@ public class AdpViewHolder extends RecyclerView.ViewHolder {
 
         title=(TextView)itemView.findViewById(R.id.workout_title);
         day=(TextView)itemView.findViewById(R.id.workout_day);
+        sets=(TextView)itemView.findViewById(R.id.workout_sets);
+        reps=(TextView)itemView.findViewById(R.id.workout_reps);
+        image=(TextView)itemView.findViewById(R.id.workout_image);
     }
 }
