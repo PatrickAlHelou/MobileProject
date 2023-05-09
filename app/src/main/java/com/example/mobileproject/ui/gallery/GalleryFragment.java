@@ -31,7 +31,7 @@ public class GalleryFragment extends Fragment {
 
         // Set up RecyclerView
         RecyclerView recyclerView = binding.rvWorkouts;
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
 
         // Set up WorkoutAdapter
         WorkoutAdapter workoutAdapter = new WorkoutAdapter(Workout.createWorkoutsList(getContext()));

@@ -43,13 +43,13 @@ public class WorkoutAdapter extends RecyclerView.Adapter<AdpViewHolder> {
         textView.setText(workout.getTitle());
 
         TextView textView2 = holder.day;
-        textView2.setText(workout.getDay());
+        textView2.setText("Day : " + workout.getDay());
 
         TextView textView3 = holder.sets;
-        textView3.setText(String.valueOf(workout.getSets()));
+        textView3.setText("Sets = " + String.valueOf(workout.getSets()));
 
         TextView textView4 = holder.reps;
-        textView4.setText(String.valueOf(workout.getReps()));
+        textView4.setText("Reps = " + String.valueOf(workout.getReps()));
 
         ImageView imageView = holder.image;
         Glide.with(imageView.getContext())
