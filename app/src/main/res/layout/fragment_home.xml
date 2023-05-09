@@ -2,12 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
 
     <TextView
         android:id="@+id/title"
         android:text="Welcome to Our Application"
-        android:textSize="24sp"
+        android:textSize="28sp"
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,7 +18,7 @@
     <TextView
         android:id="@+id/subtitle"
         android:text="A Powerful and Intuitive Solution for Your Needs"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="italic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,27 +37,30 @@
 
             <TextView
                 android:text="About Our Application"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginTop="48dp"
+                android:layout_marginBottom="16dp" />
 
             <TextView
                 android:text="Our application is designed to help you achieve your goals in a fast and intuitive way. With its user-friendly interface, you can easily manage your tasks, stay organized, and get things done efficiently. Whether you're a student, a professional, or just someone looking to improve your productivity, our application is the perfect solution for you. With its powerful features and customizable settings, you can tailor it to suit your specific needs and preferences."
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="8dp"
+                android:letterSpacing="0.05"
+                android:textColor="@android:color/darker_gray" />
 
             <TextView
                 android:text="Key Features"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginTop="48dp"
+                android:layout_marginBottom="16dp" />
 
             <LinearLayout
                 android:orientation="vertical"
@@ -65,84 +69,91 @@
 
                 <TextView
                     android:text="Task Management"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp" />
+                    android:layout_marginTop="32dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:text="Easily create, organize, and prioritize your tasks"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp" />
+                    android:layout_marginBottom="32dp"
+                    android:lineSpacingExtra="4dp"
+                    android:letterSpacing="0.05"
+                    android:textColor="@android:color/darker_gray" />
 
                 <TextView
                     android:text="Reminders"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp" />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:text="Set reminders to keep yourself on track and never miss a deadline"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp" />
+                    android:layout_marginBottom="32dp"
+                    android:lineSpacingExtra="4dp"
+                    android:letterSpacing="0.05"
+                    android:textColor="@android:color/darker_gray" />
 
                 <TextView
                     android:text="Collaboration"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp" />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:text="Share tasks and collaborate with others in real-time"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp" />
+                    android:layout_marginBottom="32dp"
+                    android:lineSpacingExtra="4dp"
+                    android:letterSpacing="0.05"
+                    android:textColor="@android:color/darker_gray" />
 
                 <TextView
                     android:text="Customization"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp" />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:text="Tailor the app to your needs with customizable settings and themes"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp" />
+                    android:layout_marginBottom="32dp"
+                    android:lineSpacingExtra="4dp"
+                    android:letterSpacing="0.05"
+                    android:textColor="@android:color/darker_gray" />
 
                 <TextView
                     android:text="Security"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp" />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:text="Protect your data with advanced security features and encryption"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp" />
+                    android:layout_marginBottom="32dp"
+                    android:lineSpacingExtra="4dp"
+                    android:letterSpacing="0.05"
+                    android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
-
-            <TextView
-                android:text="Get Started"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp" />
 
 
 
@@ -153,11 +164,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="232dp"
-        android:layout_marginTop="16dp"
         android:gravity="center_horizontal"
         android:padding="16dp"
-        android:text="Copyright"
-        android:textColor="@color/dark_gray"
+        android:text="© 2023 Our Company. All Rights Reserved."
+        android:textColor="@android:color/darker_gray"
         android:textSize="12sp"
         android:textStyle="italic" />
 
