@@ -14,13 +14,15 @@
         android:theme="@style/Theme.MobileProject"
         tools:targetApi="31">
         <activity
+            android:name=".HistoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".Music"
             android:exported="false" />
         <activity
             android:name=".WorkoutDetails"
             android:exported="false" />
-        <activity android:name="com.example.mobileproject.Artist" />
-
+        <activity android:name=".Artist" />
         <activity
             android:name=".MainActivity2"
             android:exported="false"
