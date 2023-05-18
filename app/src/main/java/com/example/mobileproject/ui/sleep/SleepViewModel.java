@@ -10,10 +10,13 @@ public class SleepViewModel extends ViewModel {
 
     public SleepViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is Music fragment");
+        mText.setValue("This is Sleep fragment");
+
     }
 
     public LiveData<String> getText() {
         return mText;
     }
 }
+
+

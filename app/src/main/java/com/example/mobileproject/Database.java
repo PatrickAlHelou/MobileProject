@@ -49,7 +49,7 @@ public class Database extends SQLiteOpenHelper {
 
     public Cursor login(String username, String password) {
         SQLiteDatabase db = getReadableDatabase();
-        String[] columns = {"username", "email"};
+        String[] columns = {"username", "email","password"};
         String[] selectionArgs = {username, password};
         Cursor cursor = db.query("users", columns, "username=? AND password=?", selectionArgs, null, null, null);
         if (cursor != null && cursor.moveToFirst()) {

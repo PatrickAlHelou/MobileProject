@@ -68,27 +68,27 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     public static boolean isValid(String password){
-        // Password must be at least 8 characters long
-//        if (password.length() < 8) {
-//            return false;
-//        }
-//        // Password must contain at least one uppercase letter
-//        if (!password.matches(".*[A-Z].*")) {
-//            return false;
-//        }
-//        // Password must contain at least one lowercase letter
-//        if (!password.matches(".*[a-z].*")) {
-//            return false;
-//        }
-//        // Password must contain at least one digit
-//        if (!password.matches(".*\\d.*")) {
-//            return false;
-//        }
-//        // Password must contain at least one special character
-//        if (!password.matches(".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?].*")) {
-//            return false;
-//        }
-//        // Password is valid
+
+        if (password.length() < 8) {
+          return false;
+      }
+        // Password must contain at least one uppercase letter
+       if (!password.matches(".*[A-Z].*")) {
+          return false;
+       }
+       // Password must contain at least one lowercase letter
+       if (!password.matches(".*[a-z].*")) {
+            return false;
+      }
+       // Password must contain at least one digit
+       if (!password.matches(".*\\d.*")) {
+            return false;
+      }
+       // Password must contain at least one special character
+       if (!password.matches(".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?].*")) {
+          return false;
+       }
+
         return true;
     }
 }

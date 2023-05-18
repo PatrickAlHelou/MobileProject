@@ -1,12 +1,14 @@
 package com.example.mobileproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -56,6 +58,19 @@ public class WorkoutAdapter extends RecyclerView.Adapter<AdpViewHolder> {
                 .load(workout.getImage()) // load image from URL
                 .into(imageView); // set the loaded image to the ImageView
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), WorkoutDetails.class);
+                intent.putExtra("image2",workout.getImage2());
+                intent.putExtra("title",workout.getTitle());
+                intent.putExtra("day",workout.getDay());
+                intent.putExtra("sets",workout.getSets());
+                intent.putExtra("reps",workout.getReps());
+                view.getContext().startActivity(intent);
+
+            }
+        });
         Log.d("WorkoutAdapter", "Image URL: " + workout.getImage());
 
     }

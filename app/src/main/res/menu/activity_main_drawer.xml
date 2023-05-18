@@ -12,30 +12,19 @@
             android:id="@+id/nav_gallery"
             android:icon="@drawable/fitness_banner"
             android:title="Workouts" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
-    </group>
 
-    <item android:title="Account">
-        <menu>
-            <item
-                android:id="@+id/nav_profile"
-                android:title="Profile" />
-            <item
-                android:id="@+id/nav_settings"
-                android:title="Settings" />
-        </menu>
-    </item>
+    </group>
 
     <item android:title="Actions">
         <menu>
+
+            <item
+                android:id="@+id/nav_slideshow"
+                android:icon="@drawable/ic_baseline_priority_high_24"
+                android:title="Top Artists" />
             <item
                 android:id="@+id/nav_sleep"
-                android:title="Sleep" />
-            <item
-                android:id="@+id/nav_music"
+                android:icon="@drawable/ic_baseline_music_note_24"
                 android:title="Music" />
         </menu>
     </item>

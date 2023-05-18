@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/nav_slideshow"
         android:name="com.example.mobileproject.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
+        android:label="Profile"
         tools:layout="@layout/fragment_slideshow" />
 
     <fragment
@@ -32,14 +32,9 @@
     <fragment
         android:id="@+id/nav_sleep"
         android:name="com.example.mobileproject.ui.sleep.SleepFragment"
-        android:label="Sleep"
+        android:label="Music"
         tools:layout="@layout/fragment_sleep"/>
 
-    <fragment
-        android:id="@+id/nav_music"
-        android:name="com.example.mobileproject.ui.music.MusicFragment"
-        android:label="Music"
-        tools:layout="@layout/fragment_music"/>
 
 
 </navigation>

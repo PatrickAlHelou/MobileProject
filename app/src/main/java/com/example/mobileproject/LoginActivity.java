@@ -20,6 +20,11 @@ public class LoginActivity extends AppCompatActivity {
     Button btn;
     TextView tv;
 
+    public final static String SHARED_PREFS = "userPrefs";
+    public final static String USER_NAME = "userName";
+    public final static String EMAIL = "email";
+
+    public final static String PASSWORD = "password";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,12 +54,19 @@ public class LoginActivity extends AppCompatActivity {
                             // retrieve the name and email from the cursor
                             String name = cursor.getString(0);
                             String email = cursor.getString(1);
+                            String pass = cursor.getString(2);
                             // do something with the name and email (e.g., display them in a TextView)
                             cursor.close();
-
+                        SharedPreferences sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedpreferences.edit();
+                        editor.putString(USER_NAME,name);
+                        editor.putString(EMAIL,email);
+                        editor.putString(PASSWORD,pass);
+                        editor.commit();
                         Intent intent = new Intent(LoginActivity.this, MainActivity2.class);
                         intent.putExtra("name", name);
                         intent.putExtra("email", email);
+
                         startActivity(intent);
 
 

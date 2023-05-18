@@ -26,5 +26,12 @@ public class AdpViewHolder extends RecyclerView.ViewHolder {
         sets=(TextView)itemView.findViewById(R.id.workout_sets);
         reps=(TextView)itemView.findViewById(R.id.workout_reps);
         image = (ImageView) itemView.findViewById(R.id.workout_image);
+
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println(title);
+            }
+        });
     }
 }
