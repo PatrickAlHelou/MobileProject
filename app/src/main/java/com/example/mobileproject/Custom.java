@@ -1,6 +1,7 @@
 package com.example.mobileproject;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -89,7 +90,7 @@ class Custom extends BaseAdapter {
       } else {
          viewHolder.isPlaying = false;
       }
-
+      SharedPreferences sh = this.context.getSharedPreferences(LoginActivity.SHARED_PREFS,Context.MODE_PRIVATE);
       viewHolder.button.setOnClickListener(new View.OnClickListener() {
          public void onClick(View view) {
             if (!viewHolder.isPlaying) {
@@ -107,6 +108,10 @@ class Custom extends BaseAdapter {
                   mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                      @Override
                      public void onPrepared(MediaPlayer mp) {
+                        try (Database db = new Database(view.getContext(), "fitness", null, 1)) {
+                           String userName = sh.getString(LoginActivity.USER_NAME,"");
+                           //db.addHistory(model.getTitle(), userName);
+                        }
                         mediaPlayer.start();
                         viewHolder.isPlaying = true;
                         currentlyPlayingViewHolder = viewHolder; // Update the currently playing ViewHolder

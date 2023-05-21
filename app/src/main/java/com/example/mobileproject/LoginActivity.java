@@ -57,17 +57,26 @@ public class LoginActivity extends AppCompatActivity {
                             String pass = cursor.getString(2);
                             // do something with the name and email (e.g., display them in a TextView)
                             cursor.close();
-                        SharedPreferences sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+                        SharedPreferences sharedpreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedpreferences.edit();
-                        editor.putString(USER_NAME,name);
+                        editor.putString("name", name);
                         editor.putString(EMAIL,email);
                         editor.putString(PASSWORD,pass);
                         editor.commit();
+
+
+
                         Intent intent = new Intent(LoginActivity.this, MainActivity2.class);
                         intent.putExtra("name", name);
                         intent.putExtra("email", email);
-
                         startActivity(intent);
+
+
+
+
+
+
+//                        startActivity(intent);
 
 
 

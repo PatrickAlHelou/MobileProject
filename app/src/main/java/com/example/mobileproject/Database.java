@@ -16,7 +16,9 @@ public class Database extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String qry1 = "create table users(id integer PRIMARY KEY AUTOINCREMENT ,username text,email text , password text )";
+        String qry2 = "create table history(id integer PRIMARY KEY AUTOINCREMENT ,username text,song text)";
         db.execSQL(qry1);
+        db.execSQL(qry2);
     }
 
     @Override
@@ -34,18 +36,16 @@ public class Database extends SQLiteOpenHelper {
         db.close();
     }
 
-   /* public int login (String username , String password){
-        int result = 0;
-        String str[] = new String[2];
-        str[0] = username;
-        str[1] = password;
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor c = db.rawQuery("select * from users where username=? and password=? " , str);
-        if(c.moveToFirst()){
-            result = 1;
-        }
-        return result;
-    }*/
+    public void addHistory(String username, String song)
+    {
+        ContentValues cv = new ContentValues();
+        cv.put("username", username);
+        cv.put("song", song);
+        SQLiteDatabase db = getWritableDatabase();
+        db.insert("history", "id", cv);
+        db.close();
+
+    }
 
     public Cursor login(String username, String password) {
         SQLiteDatabase db = getReadableDatabase();
