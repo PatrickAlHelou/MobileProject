@@ -12,6 +12,15 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -21,8 +30,11 @@ class Custom extends BaseAdapter {
    private Context context;
    private int layout;
 
-   private MediaPlayer mediaPlayer; // Declare mediaPlayer as a class-level variable
-   private ViewHolder currentlyPlayingViewHolder; // Declare currentlyPlayingViewHolder as a class-level variable
+   private MediaPlayer mediaPlayer;
+   private ViewHolder currentlyPlayingViewHolder;
+
+   public final static String SHARED_PREFS = "userPrefs";
+   public final static String USER_NAME = "userName";
 
    public Custom(ArrayList<MusicModel> modelArrayList, Context context, int layout) {
       this.modelArrayList = modelArrayList;
@@ -90,7 +102,12 @@ class Custom extends BaseAdapter {
       } else {
          viewHolder.isPlaying = false;
       }
-      SharedPreferences sh = this.context.getSharedPreferences(LoginActivity.SHARED_PREFS,Context.MODE_PRIVATE);
+
+      SharedPreferences sh = context.getSharedPreferences(LoginActivity.SHARED_PREFS,Context.MODE_PRIVATE);
+      SharedPreferences sharedpreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+      String name = sharedpreferences.getString("name", "");
+
+
       viewHolder.button.setOnClickListener(new View.OnClickListener() {
          public void onClick(View view) {
             if (!viewHolder.isPlaying) {
@@ -108,13 +125,47 @@ class Custom extends BaseAdapter {
                   mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                      @Override
                      public void onPrepared(MediaPlayer mp) {
-                        try (Database db = new Database(view.getContext(), "fitness", null, 1)) {
-                           String userName = sh.getString(LoginActivity.USER_NAME,"");
-                           //db.addHistory(model.getTitle(), userName);
-                        }
+
+                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                        DatabaseReference musicRef = database.getReference("music");
+
+                        Query query = musicRef.orderByChild("name").equalTo(name);
+
+                        query.addListenerForSingleValueEvent(new ValueEventListener() {
+                           @Override
+                           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                              boolean isMusicFound = false;
+                              for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+                                 String musicTitle = childSnapshot.child("title").getValue(String.class);
+                                 if (musicTitle.equals(model.getTitle())) {
+                                    // Increment the time count
+                                    int time = childSnapshot.child("time").getValue(Integer.class);
+                                    time++;
+                                    childSnapshot.getRef().child("time").setValue(time);
+                                    isMusicFound = true;
+                                    break;
+                                 }
+                              }
+                              if (!isMusicFound) {
+                                 DatabaseReference newMusicRef = musicRef.push();
+                                 newMusicRef.child("name").setValue(name);
+                                 newMusicRef.child("title").setValue(model.getTitle());
+                                 newMusicRef.child("time").setValue(1);
+                              }
+                           }
+
+                           @Override
+                           public void onCancelled(@NonNull DatabaseError error) {
+
+                           }
+                        });
+
+
                         mediaPlayer.start();
                         viewHolder.isPlaying = true;
-                        currentlyPlayingViewHolder = viewHolder; // Update the currently playing ViewHolder
+
+
+                        currentlyPlayingViewHolder = viewHolder;
                      }
                   });
                   mediaPlayer.prepareAsync();
@@ -128,8 +179,72 @@ class Custom extends BaseAdapter {
          }
       });
 
+
+//      viewHolder.button.setOnClickListener(new View.OnClickListener() {
+//         public void onClick(View view) {
+//            if (!viewHolder.isPlaying) {
+//
+//               if (currentlyPlayingViewHolder != null && currentlyPlayingViewHolder != viewHolder) {
+//                  // Stop the MediaPlayer of the previously playing ViewHolder
+//                  stopMediaPlayer();
+//                  currentlyPlayingViewHolder.isPlaying = false;
+//               }
+//
+//               String audioUrl = model.getLink();
+//               try {
+//                  mediaPlayer.reset();
+//                  mediaPlayer.setDataSource(audioUrl);
+//                  mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+//                     @Override
+//                     public void onPrepared(MediaPlayer mp) {
+//
+//                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//                        DatabaseReference musicRef = database.getReference("music");
+//
+//                        Query query = musicRef.orderByChild("name").equalTo(name);
+//
+//                        query.addListenerForSingleValueEvent(new ValueEventListener() {
+//                           @Override
+//                           public void onDataChange(DataSnapshot dataSnapshot) {
+//                              if (dataSnapshot.exists()) {
+//                                 // If a matching child node is found, increment the "time" attribute by 1
+//                                 for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+//                                    int currentTime = childSnapshot.child("time").getValue(Integer.class);
+//                                    childSnapshot.getRef().child("time").setValue(currentTime + 1);
+//                                    break; // Exit the loop after the first match
+//                                 }
+//                              } else {
+//                                 // If no matching child node is found, create a new child node with the provided "name", "title", and "time" attributes set to the given values
+//                                 DatabaseReference newMusicRef = musicRef.push();
+//                                 newMusicRef.child("name").setValue(name);
+//                                 newMusicRef.child("title").setValue(model.getTitle());
+//                                 newMusicRef.child("time").setValue(1);
+//                              }
+//                           }
+//
+//                           @Override
+//                           public void onCancelled(DatabaseError databaseError) {
+//                              // Handle the error
+//                           }
+//                        });
+//                        mediaPlayer.start();
+//                        viewHolder.isPlaying = true;
+//
+//
+//                        currentlyPlayingViewHolder = viewHolder;
+//                     }
+//                  });
+//                  mediaPlayer.prepareAsync();
+//               } catch (IOException e) {
+//                  e.printStackTrace();
+//               }
+//            } else {
+//               mediaPlayer.pause();
+//               viewHolder.isPlaying = false;
+//            }
+//         }
+//      });
+
       return view;
    }
-
-
 }
