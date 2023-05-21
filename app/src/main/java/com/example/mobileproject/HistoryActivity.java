@@ -1,13 +1,20 @@
 package com.example.mobileproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class HistoryActivity extends AppCompatActivity {
 
@@ -16,17 +23,48 @@ public class HistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_history);
 
-        TextView textView = findViewById(R.id.my_text_view);
-        textView.setText("HistoryActivity Class");
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Workout");
+        DatabaseReference myRef = database.getReference("workouts");
 
-        Workout a = new Workout(1, "Bench Press" , 4 , 8 , "Monday" , "https://i.ibb.co/jWGScYk/6.jpg" , "https://i.ibb.co/QmzZx8L/barbell-bench-press.gif");
-        Workout b = new Workout(2,"Bench Press Close Grip" , 3 , 12 , "Monday" , "https://i.ibb.co/jDmnk2B/7.jpg", "https://gymvisual.com/img/p/1/0/0/6/1/10061.gif");
 
-        myRef.push().setValue(a);
-        myRef.push().setValue(b);
+        SharedPreferences sharedpreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String name = sharedpreferences.getString("name", "");
+
+        fetchWorkoutsByName(name, myRef);
 
     }
+
+    private void fetchWorkoutsByName(String name, DatabaseReference myRef) {
+        Query query = myRef.orderByChild("name").equalTo(name);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                StringBuilder workoutInfoBuilder = new StringBuilder();
+
+                for (DataSnapshot workoutSnapshot : dataSnapshot.getChildren()) {
+
+                    WorkoutHistory workout = workoutSnapshot.getValue(WorkoutHistory.class);
+
+
+                    int workoutSets = workout.getSets();
+                    String workoutTitle = workout.getTitle();
+
+
+                    workoutInfoBuilder.append("Title: ").append(workoutTitle).append("\n")
+                            .append("Sets: ").append(workoutSets).append("\n").append("\n");
+                }
+
+
+                TextView workoutTextView = findViewById(R.id.workout_text_view);
+                workoutTextView.setText(workoutInfoBuilder.toString());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 }
